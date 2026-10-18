@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meron Delivery | Campus food and goods, delivered</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#0f1713;--ink:#18241d;--line:#2b3b31;--yellow:#ffc93c;--chili:#e5412d;--cream:#f6ecd8;--green:#3a9b5c;--mute:#b9c4b5;
+--disp:'Bricolage Grotesque',Impact,sans-serif;--body:'Figtree',system-ui,sans-serif;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--night);color:var(--cream);font:17px/1.6 var(--body)}
+h1,h2,h3{font-family:var(--disp);margin:0;line-height:1.02}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;display:flex;align-items:center;gap:18px;padding:12px 5vw;background:#0f1713f2;border-bottom:1px solid var(--line)}
+.brand{font:800 1.3rem var(--disp);color:var(--yellow);margin-right:auto;display:flex;align-items:center;gap:9px}
+.brand i{width:16px;height:16px;border-radius:50% 50% 50% 0;background:var(--chili);transform:rotate(-45deg)}
+nav a{color:var(--cream);text-decoration:none;padding:6px 2px;border-bottom:2px solid transparent;opacity:.8}
+nav a:hover,nav a.on{opacity:1;border-color:var(--yellow)}
+.navlinks{display:flex;gap:clamp(12px,3vw,28px)}
+.btn{display:inline-block;border:0;cursor:pointer;background:var(--yellow);color:#1a1405;font-weight:600;padding:12px 22px;border-radius:6px;text-decoration:none;transition:transform .15s,background .15s}
+.btn:hover{background:#ffd86b;transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--cream);border:2px solid var(--line)}
+.btn.alt:hover{border-color:var(--yellow);background:transparent}
+.page{display:none}.page.on{display:block}
+.hero{position:relative;height:calc(100svh - 62px);min-height:480px;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(#0f1713cc,transparent 45%,#0f1713 100%);pointer-events:none}
+.hero-text{position:absolute;z-index:2;left:5vw;right:5vw;top:9vh;max-width:760px}
+.hero h1{font-size:clamp(2.8rem,10vw,6.6rem);font-weight:800}
+.hero h1 span{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 span:nth-child(2){animation-delay:.18s;color:var(--yellow)}
+.hero p{font-size:1.15rem;max-width:42ch;margin:18px 0 24px;color:var(--cream);animation:rise .9s .4s cubic-bezier(.2,.8,.2,1) both}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;animation:rise .9s .55s both}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.wrap{max-width:960px;margin:0 auto;padding:56px 5vw 120px}
+.wrap h2{font-size:clamp(2.2rem,6vw,3.8rem);margin-bottom:14px}
+.lead{color:var(--mute);max-width:56ch;margin:0 0 28px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:6px}
+.tab{flex:none;border:2px solid var(--line);background:none;border-radius:40px;padding:8px 18px;cursor:pointer;font-weight:500}
+.tab[aria-selected=true]{background:var(--cream);color:var(--night);border-color:var(--cream)}
+.shop h3{font-size:1.7rem;margin:34px 0 2px;color:var(--yellow)}
+.shop .sub{color:var(--mute);margin:0 0 6px;font-size:.98rem}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+.row b{font-weight:600;font-size:1.08rem}
+.row small{display:block;color:var(--mute);font-size:.96rem}
+.price{font-family:var(--disp);font-weight:800;font-size:1.15rem;white-space:nowrap}
+.row .act{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.step{display:flex;align-items:center;gap:6px}
+.step button{width:40px;height:40px;border-radius:6px;border:2px solid var(--line);background:none;cursor:pointer;font-size:1.2rem}
+.step button:hover{border-color:var(--yellow)}
+.step output{min-width:28px;text-align:center;font-weight:600}
+.addbtn{border:2px solid var(--yellow);background:none;color:var(--yellow);border-radius:6px;padding:8px 18px;font-weight:600;cursor:pointer}
+.addbtn:hover{background:var(--yellow);color:#1a1405}
+#bar{position:fixed;left:0;right:0;bottom:0;z-index:25;padding:12px 5vw calc(12px + env(safe-area-inset-bottom,0px));background:var(--yellow);color:#1a1405;display:none;justify-content:space-between;align-items:center;gap:12px;border:0;cursor:pointer;font-weight:600;width:100%;text-align:left}
+#bar.show{display:flex}
+#bar span:last-child{font-family:var(--disp);font-weight:800;font-size:1.2rem}
+dialog{border:0;border-radius:10px;background:var(--ink);color:var(--cream);width:min(560px,94vw);max-height:92vh;padding:24px;overflow:auto}
+dialog::backdrop{background:#000a}
+dialog h2{font-size:2rem;margin-bottom:10px}
+.line{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.tot{font:800 1.4rem var(--disp);border:0}
+label{display:block;margin:14px 0 4px;font-weight:500}
+input[type=text],input[type=tel],textarea{width:100%;background:var(--night);border:2px solid var(--line);border-radius:6px;padding:11px;font-size:1rem}
+input:focus,textarea:focus{border-color:var(--yellow);outline:none}
+.pay{display:flex;gap:10px;flex-wrap:wrap}
+.pay label{margin:0;border:2px solid var(--line);border-radius:6px;padding:10px 14px;cursor:pointer}
+.pay input{accent-color:var(--yellow);margin-right:6px}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px}
+.big{font:800 clamp(2.6rem,8vw,4.4rem) var(--disp);color:var(--yellow);line-height:1}
+.step3 p{margin:6px 0 24px}
+pre{white-space:pre-wrap;background:var(--night);padding:14px;border-radius:6px;font:inherit;border:1px solid var(--line)}
+footer{padding:30px 5vw 90px;border-top:1px solid var(--line);color:var(--mute)}
+@media(max-width:700px){.two{grid-template-columns:1fr;gap:10px}.navlinks{gap:10px;font-size:.95rem}.brand{font-size:1.1rem}}
+@media(prefers-reduced-motion:reduce){.hero h1 span,.hero p,.hero .ctas{animation:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand"><i></i>Meron Delivery</div>
+  <div class="navlinks">
+    <a href="#home" class="on">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+<section class="page on" id="home">
+  <div class="hero">
+    <canvas id="film" aria-label="A delivery rider crossing campus at night"></canvas>
+    <div class="hero-text">
+      <h1><span>Don’t leave</span><span>your seat.</span></h1>
+      <p>Food from the cafeteria, snacks from the gate shop, prints from the stationery. A rider brings it to your block in minutes.</p>
+      <div class="ctas"><a class="btn" href="#menu">Order food now</a><a class="btn alt" href="#services">How it works</a></div>
+    </div>
+  </div>
+  <div class="wrap" id="menu">
+    <h2>What’s open today</h2>
+    <p class="lead">Pick a shop, add what you want, and send your order. Prices are in birr and the delivery fee is added at checkout.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="shops"></div>
+  </div>
+</section>
+
+<section class="page" id="about">
+  <div class="wrap">
+    <h2>Made by students, for students</h2>
+    <p class="lead">Meron Delivery started with a simple problem at Dire Dawa University: lectures run long, the cafeteria line doesn’t move, and nobody wants to walk across campus in the midday sun.</p>
+    <div class="two">
+      <div><div class="big">7 min</div><p>Typical delivery time inside campus, from the moment a shop hands over your order.</p></div>
+      <div><div class="big">20 birr</div><p>Flat delivery fee, no matter how many items you order from one shop.</p></div>
+    </div>
+    <p class="lead" style="margin-top:36px">Our riders are students too. They know every dorm block, every lecture hall, and which gate is closed after 9 pm.</p>
+  </div>
+</section>
+
+<section class="page" id="services">
+  <div class="wrap">
+    <h2>What we deliver</h2>
+    <p class="lead">Anything a shop near campus sells, we can carry.</p>
+    <div class="row"><div><b>Hot food</b><small>Meals from cafeterias and nearby kitchens, packed to stay warm.</small></div></div>
+    <div class="row"><div><b>Snacks and drinks</b><small>Water, juice, bread, biscuits and the late-night essentials.</small></div></div>
+    <div class="row"><div><b>Study supplies</b><small>Pens, notebooks, printing and photocopies.</small></div></div>
+    <div class="row"><div><b>Errands</b><small>Need something from a shop we don’t list? Message us and a rider will go.</small></div></div>
+    <h2 style="margin-top:52px;font-size:2.2rem">How an order works</h2>
+    <div class="step3">
+      <div class="row"><div><b>1. Choose</b><small>Add items from any shop on the Home page.</small></div></div>
+      <div class="row"><div><b>2. Send</b><small>Tell us your name, phone and where to bring it. Send the order on Telegram.</small></div></div>
+      <div class="row"><div><b>3. Pay</b><small>Pay cash when it arrives, or through Telebirr.</small></div></div>
+    </div>
+    <p style="margin-top:28px"><a class="btn" href="#menu">Start an order</a></p>
+  </div>
+</section>
+
+<section class="page" id="contact">
+  <div class="wrap">
+    <h2>Talk to us</h2>
+    <p class="lead">Missing order, wrong item, or a shop you want us to add? Message us any time between 8:00 am and 10:00 pm.</p>
+    <div class="row"><div><b>Telegram</b><small id="tgline">@meron_delivery</small></div><a class="btn" id="tglink" href="https://t.me/meron_delivery">Message on Telegram</a></div>
+    <div class="row"><div><b>Phone</b><small>09 00 00 00 00</small></div><a class="btn alt" href="tel:0900000000">Call us</a></div>
+    <div class="row"><div><b>Where we deliver</b><small>Dire Dawa University: all dorm blocks, lecture halls, library and the main gate area.</small></div></div>
+    <div class="row"><div><b>Hours</b><small>Every day, 8:00 am to 10:00 pm.</small></div></div>
+  </div>
+</section>
+</main>
+<footer>© Meron Delivery, Dire Dawa University. Run by students.</footer>
+
+<button id="bar" aria-label="Review your order"><span id="barn">0 items</span><span id="bart">0 birr</span></button>
+
+<dialog id="dlg">
+  <div id="d1">
+    <h2>Your order</h2>
+    <div id="lines"></div>
+    <label for="nm">Your name</label><input type="text" id="nm" autocomplete="name">
+    <label for="ph">Phone number</label><input type="tel" id="ph" autocomplete="tel">
+    <label for="sp">Where should we bring it?</label><input type="text" id="sp" placeholder="Block 4, room 12 / Library entrance">
+    <label>How will you pay?</label>
+    <div class="pay"><label><input type="radio" name="pay" value="Cash on delivery" checked>Cash on delivery</label><label><input type="radio" name="pay" value="Telebirr">Telebirr</label></div>
+    <label for="nt">Note for the rider (optional)</label><textarea id="nt" rows="2"></textarea>
+    <p id="err" style="color:#ff8a78;margin:10px 0 0" role="alert"></p>
+    <div class="acts"><button class="btn" id="send">Create my order</button><button class="btn alt" id="close1">Keep shopping</button></div>
+  </div>
+  <div id="d2" hidden>
+    <h2>Almost done</h2>
+    <p>Send this message to us on Telegram so a rider can pick it up. Tap the button, then press send.</p>
+    <pre id="msg"></pre>
+    <div class="acts"><a class="btn" id="tg" target="_blank" rel="noopener" href="#">Send on Telegram</a><button class="btn alt" id="copy">Copy order</button><button class="btn alt" id="done">Close</button></div>
+  </div>
+</dialog>
+
+<script>
+const FEE=20, TG='meron_delivery', TELEBIRR='09 00 00 00 00';
+const shops=[
+ {n:'Campus cafeteria',s:'Hot meals, 11:00 am to 8:00 pm',i:[['Shiro with injera','Chickpea stew, two pieces of injera',60],['Firfir','Shredded injera in spicy berbere sauce',70],['Pasta with sauce','Large plate, tomato and onion sauce',65],['Egg sandwich','Fresh bread, fried egg, tomato',35]]},
+ {n:'Gate mini-mart',s:'Snacks and drinks, 7:00 am to 10:00 pm',i:[['Bottled water 1L','Cold on request',20],['Fruit juice','Mango or avocado, fresh',45],['Biscuits pack','Choose sweet or plain',25],['Bread loaf','Baked this morning',15]]},
+ {n:'Buna corner',s:'Tea and coffee, 6:30 am to 9:00 pm',i:[['Macchiato','Espresso with a spoon of milk',25],['Spris','Coffee and tea layered in one glass',25],['Black tea','With sugar, ginger or cinnamon',15],['Chips and bun','Warm and fresh',20]]},
+ {n:'Print and stationery',s:'Study supplies, 8:00 am to 8:00 pm',i:[['Print, per page','Black and white, A4',3],['Photocopy, per page','Black and white, A4',2],['Notebook','80 pages, ruled',40],['Pen set','Three blue pens',30]]}
+];
+const cart={}; // "s:i" -> qty
+const $=s=>document.querySelector(s);
+const fmt=n=>n+' birr';
+
+// pages
+const pages=[...document.querySelectorAll('.page')],links=[...document.querySelectorAll('nav a')];
+function route(){
+  let id=(location.hash||'#home').slice(1);
+  if(id==='menu'){show('home');requestAnimationFrame(()=>$('#menu').scrollIntoView());return}
+  show(pages.some(p=>p.id===id)?id:'home');window.scrollTo(0,0);
+}
+function show(id){pages.forEach(p=>p.classList.toggle('on',p.id===id));links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id))}
+addEventListener('hashchange',route);route();
+
+// menu
+let tab=-1;
+function tabs(){
+  $('#tabs').innerHTML=['All shops',...shops.map(s=>s.n)].map((t,i)=>`<button class="tab" role="tab" aria-selected="${i-1===tab}" data-t="${i-1}">${t}</button>`).join('');
+}
+function menu(){
+  $('#shops').innerHTML=shops.map((s,si)=>tab>=0&&tab!==si?'':`<div class="shop"><h3>${s.n}</h3><p class="sub">${s.s}</p>${s.i.map((it,ii)=>{
+    const q=cart[si+':'+ii]||0;
+    return `<div class="row"><div><b>${it[0]}</b><small>${it[1]}</small></div><div class="price">${fmt(it[2])}</div><div class="act">${q?`<span class="step"><button data-k="${si}:${ii}" data-d="-1" aria-label="Remove one ${it[0]}">−</button><output>${q}</output><button data-k="${si}:${ii}" data-d="1" aria-label="Add one ${it[0]}">+</button></span>`:`<button class="addbtn" data-k="${si}:${ii}" data-d="1">Add to order</button>`}</div></div>`}).join('')}</div>`).join('');
+}
+function totals(){let n=0,t=0;for(const k in cart){const[si,ii]=k.split(':');n+=cart[k];t+=cart[k]*shops[si].i[ii][2]}return{n,t}}
+function bar(){const{n,t}=totals();$('#bar').classList.toggle('show',n>0);$('#barn').textContent=`View order · ${n} item${n>1?'s':''}`;$('#bart').textContent=fmt(t+FEE)}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;tab=+b.dataset.t;tabs();menu()});
+$('#shops').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;
+  const k=b.dataset.k;cart[k]=Math.max(0,(cart[k]||0)+ +b.dataset.d);if(!cart[k])delete cart[k];
+  const f=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.k:null;
+  menu();bar();const again=document.querySelector(`.step [data-k="${k}"][data-d="1"]`);if(again)again.focus()});
+tabs();menu();
+
+// checkout
+const dlg=$('#dlg');
+function lines(){
+  const{t}=totals();
+  $('#lines').innerHTML=Object.keys(cart).map(k=>{const[si,ii]=k.split(':'),it=shops[si].i[ii];return `<div class="line"><span>${cart[k]} × ${it[0]} <small style="color:var(--mute)">(${shops[si].n})</small></span><span>${fmt(cart[k]*it[2])}</span></div>`}).join('')
+  +`<div class="line"><span>Delivery fee</span><span>${fmt(FEE)}</span></div><div class="line tot"><span>Total</span><span>${fmt(t+FEE)}</span></div>`;
+}
+$('#bar').onclick=()=>{lines();$('#d1').hidden=false;$('#d2').hidden=true;$('#err').textContent='';dlg.showModal()};
+$('#close1').onclick=()=>dlg.close();$('#done').onclick=()=>dlg.close();
+$('#send').onclick=()=>{
+  const nm=$('#nm').value.trim(),ph=$('#ph').value.trim(),sp=$('#sp').value.trim();
+  if(!totals().n){$('#err').textContent='Add at least one item first.';return}
+  if(!nm||!ph||!sp){$('#err').textContent='Please fill in your name, phone and delivery spot.';return}
+  const pay=document.querySelector('input[name=pay]:checked').value,{t}=totals(),code='M'+Math.floor(1000+Math.random()*9000);
+  const items=Object.keys(cart).map(k=>{const[si,ii]=k.split(':'),it=shops[si].i[ii];return `- ${cart[k]} x ${it[0]} (${shops[si].n}) = ${cart[k]*it[2]} birr`}).join('\n');
+  const msg=`Meron Delivery order ${code}\n${items}\nDelivery fee: ${FEE} birr\nTotal: ${t+FEE} birr\nName: ${nm}\nPhone: ${ph}\nDeliver to: ${sp}\nPayment: ${pay}${pay==='Telebirr'?' (Telebirr number '+TELEBIRR+')':''}${$('#nt').value.trim()?'\nNote: '+$('#nt').value.trim():''}`;
+  $('#msg').textContent=msg;
+  $('#tg').href=`https://t.me/share/url?url=${encodeURIComponent('Meron Delivery')}&text=${encodeURIComponent(msg)}`;
+  $('#d1').hidden=true;$('#d2').hidden=false;
+};
+$('#copy').onclick=async()=>{try{await navigator.clipboard.writeText($('#msg').textContent);$('#copy').textContent='Copied'}catch(e){$('#copy').textContent='Select the text and copy'}};
+
+// hero film: rider crossing campus at night
+const cv=$('#film'),g=cv.getContext('2d'),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let W,H,D;
+function size(){D=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*D;cv.height=H*D;g.setTransform(D,0,0,D,0,0)}
+addEventListener('resize',()=>{size();if(reduce)draw(4)});size();
+const rnd=(()=>{let s=7;return()=>(s=(s*16807)%2147483647)/2147483647})();
+const bl=(n,minw,maxw,minh,maxh)=>{const a=[];let x=0;for(let i=0;i<n;i++){const w=minw+rnd()*(maxw-minw);a.push({x,w,h:minh+rnd()*(maxh-minh),win:Array.from({length:40},()=>rnd()>.62)});x+=w+6+rnd()*14}return{a,len:x}};
+const far=bl(26,50,110,110,240),near=bl(18,80,150,150,300);
+function layer(L,speed,t,col,wc,base,sc){
+  const off=(t*speed)%L.len;
+  for(let rep=0;rep<2;rep++)for(const b of L.a){
+    const x=b.x-off+rep*L.len;if(x>W||x+b.w*sc<0)continue;
+    const bw=b.w*sc,bh=b.h*sc;g.fillStyle=col;g.fillRect(x,base-bh,bw,bh);
+    g.fillStyle=wc;let k=0;
+    for(let wy=base-bh+14;wy<base-24;wy+=22)for(let wx=x+10;wx<x+bw-14;wx+=20,k++)if(b.win[k%40])g.fillRect(wx,wy,8,10);
+  }
+}
+function wheel(x,y,r,a){g.fillStyle='#0a0f0c';g.beginPath();g.arc(x,y,r,0,7);g.fill();g.strokeStyle='#8a968c';g.lineWidth=2;g.beginPath();g.arc(x,y,r*.55,0,7);g.stroke();g.beginPath();g.moveTo(x+Math.cos(a)*r*.55,y+Math.sin(a)*r*.55);g.lineTo(x-Math.cos(a)*r*.55,y-Math.sin(a)*r*.55);g.stroke()}
+function draw(t){
+  const road=H*.82,sc=Math.max(.7,Math.min(1.4,W/900));
+  let sky=g.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#08100c');sky.addColorStop(.7,'#16301f');sky.addColorStop(1,'#243d27');
+  g.fillStyle=sky;g.fillRect(0,0,W,H);
+  g.fillStyle='#f6ecd8';for(let i=0;i<40;i++){g.globalAlpha=.3+.4*Math.abs(Math.sin(t*.6+i));g.fillRect((i*137.5)%W,(i*53)%(H*.4),1.5,1.5)}g.globalAlpha=1;
+  g.fillStyle='#ffc93c';g.globalAlpha=.9;g.beginPath();g.arc(W*.84,H*.2,22*sc,0,7);g.fill();g.globalAlpha=1;
+  layer(far,12,t,'#12251a','#4d6b4c',road,.8*sc);
+  layer(near,34,t,'#0b1510','#ffc93c',road,sc);
+  g.fillStyle='#0a0e0c';g.fillRect(0,road,W,H-road);
+  g.fillStyle='#3d4a3f';g.fillRect(0,road,W,3);
+  g.fillStyle='#ffc93c';const dash=(t*260)%90;for(let x=-90+dash;x<W;x+=90)g.fillRect(x,road+(H-road)*.45,46,4);
+  // rider
+  const rx=W<700?W*.4:W*.34,bob=Math.sin(t*18)*1.2,ry=road-6+bob,r=15*sc;
+  g.save();g.translate(rx,ry);g.scale(sc,sc);g.translate(-rx,-ry);
+  const a=t*20;wheel(rx-34,ry+6,15,a);wheel(rx+36,ry+6,15,a);
+  g.fillStyle='#e5412d';g.beginPath();g.moveTo(rx-38,ry-2);g.lineTo(rx+10,ry-18);g.lineTo(rx+40,ry-12);g.lineTo(rx+36,ry+4);g.lineTo(rx-30,ry+6);g.closePath();g.fill();
+  g.fillStyle='#ffc93c';g.fillRect(rx-52,ry-52,40,34);g.fillStyle='#1a1405';g.fillRect(rx-52,ry-38,40,3);
+  g.fillStyle='#f6ecd8';g.beginPath();g.arc(rx-2,ry-48,8,0,7);g.fill();
+  g.fillStyle='#3a9b5c';g.fillRect(rx-9,ry-40,14,24);
+  g.strokeStyle='#3a9b5c';g.lineWidth=5;g.beginPath();g.moveTo(rx+2,ry-34);g.lineTo(rx+26,ry-22);g.stroke();
+  g.restore();
+  // headlight beam
+  let hb=g.createLinearGradient(rx+40*sc,0,rx+260*sc,0);hb.addColorStop(0,'rgba(255,230,150,.45)');hb.addColorStop(1,'rgba(255,230,150,0)');
+  g.fillStyle=hb;g.beginPath();g.moveTo(rx+40*sc,ry-8*sc);g.lineTo(rx+260*sc,ry-40*sc);g.lineTo(rx+260*sc,ry+30*sc);g.closePath();g.fill();
+  // delivery pin, appears every 9s
+  const c=t%9,pa=Math.max(0,Math.min(1,(c-5)/.6))*(1-Math.max(0,Math.min(1,(c-8)/.8)));
+  if(pa>0){
+    const px=W-Math.max(150,W*.2)-(W<700?30:0),py=H*.5-(1-pa)*-20;
+    g.globalAlpha=pa;g.fillStyle='#e5412d';g.fillRect(px-76,py-26,152,38);g.fillStyle='#f6ecd8';g.font='600 15px Figtree,sans-serif';g.textAlign='center';g.fillText('Delivered to Block 4',px,py-2);
+    g.beginPath();g.moveTo(px-8,py+12);g.lineTo(px+8,py+12);g.lineTo(px,py+24);g.fill();g.globalAlpha=1;g.textAlign='start';
+  }
+}
+let t0=performance.now();
+function loop(n){draw((n-t0)/1000);requestAnimationFrame(loop)}
+if(reduce)draw(6);else requestAnimationFrame(loop);
+</script>
+</body>
+</html>
